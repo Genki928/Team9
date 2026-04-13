@@ -27,10 +27,10 @@ public class CharacterBase : MonoBehaviour
 
     void Update()
     {
-        // バーストゲージが上限を超えたら、バトルを終了させる
-        if(burst_gage >= max_burst_gage)
+        // デバッグ用自爆
+        if(Input.GetKeyDown(KeyCode.Backspace) && id == 0)
         {
-            OnDie?.Invoke(id);
+            ChangeBurstGage(10);
         }
     }
 
@@ -77,5 +77,11 @@ public class CharacterBase : MonoBehaviour
     public void ChangeBurstGage(int damage)
     {
         burst_gage += damage;
+
+        // バーストゲージが上限を超えたら、バトルを終了させる
+        if (burst_gage >= max_burst_gage)
+        {
+            OnDie?.Invoke(id);
+        }
     }
 }
